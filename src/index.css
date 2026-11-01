@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: #334155;
+  }
+  
+  body {
+    background-color: #1E293B;
+    color: #F8FAFC;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.light-theme {
+    background-color: #F8FAFC;
+    color: #1E293B;
+  }
+
+  /* Universal high-contrast focus rings for keyboard navigation (WCAG 2.4.7) */
+  :focus-visible {
+    outline: 2px solid #C88A4A;
+    outline-offset: 2px;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0F172A;
+  }
+  .light ::-webkit-scrollbar-track {
+    background: #E2E8F0;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+  }
+  .light ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C88A4A;
+  }
+}
+
+/* Custom styling for typography */
+.font-display {
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
+}
+
+.font-signature {
+  font-family: 'Caveat', cursive;
+}
+
+/* Bold, high-contrast PORTFOLIO background typography — solid white fill, sharp edges */
+.portfolio-hero-text {
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
+  letter-spacing: 0.025em;
+  line-height: 0.85;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-text-stroke: none !important;
+}
+
+/* Glow effects matching palette */
+.glow-shirt {
+  box-shadow: 0 0 35px -5px rgba(208, 228, 245, 0.45);
+}
+
+.glow-wood {
+  box-shadow: 0 0 30px -5px rgba(200, 138, 74, 0.4);
+}
+
+.glow-leaf {
+  box-shadow: 0 0 25px -5px rgba(107, 142, 78, 0.35);
+}
+
+.text-glow-shirt {
+  text-shadow: 0 0 25px rgba(208, 228, 245, 0.5);
+}
+
+.text-glow-wood {
+  text-shadow: 0 0 20px rgba(200, 138, 74, 0.5);
+}
+
+/* Subtle grid backdrop */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(208, 228, 245, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.light .bg-grid-pattern {
+  background-image: radial-gradient(rgba(30, 41, 59, 0.06) 1px, transparent 1px);
+}
+
+/* Portrait mask for smooth blend into background */
+.portrait-mask {
+  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+}
+
+/* ==========================================================================
+   Hero Staggered Entry Animations & Smooth Continuous Floats ("الشغل العالي")
+   ========================================================================== */
+
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes heroFloatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes softAuraPulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+/* Animation Helper Classes */
+.animate-hero-float {
+  animation: heroFloatGentle 6s ease-in-out infinite;
+}
+
+.animate-aura-pulse {
+  animation: softAuraPulse 5.5s ease-in-out infinite;
+}
+
+.hero-animate-1 {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 100ms;
+}
+
+.hero-animate-2 {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 220ms;
+}
+
+.hero-animate-3 {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 360ms;
+}
+
+.hero-animate-4 {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 500ms;
+}
+
+.hero-animate-center {
+  animation: heroFadeScale 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 260ms;
+}
+
+.hero-animate-stats {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 420ms;
+}
+
+/* Accessible Reduced Motion Overrides (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-ping,
+  .animate-pulse,
+  .animate-hero-float,
+  .animate-aura-pulse,
+  .hero-animate-1,
+  .hero-animate-2,
+  .hero-animate-3,
+  .hero-animate-4,
+  .hero-animate-center,
+  .hero-animate-stats,
+  .scroll-reveal-box {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .portfolio-hero-text {
+    animation: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+}
